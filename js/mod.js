@@ -6,7 +6,7 @@ let modInfo = {
 
 	discordName: "",
 	discordLink: "",
-	initialStartPoints: new Decimal (10), // Used for hard resets and new players
+	initialStartPoints: new Decimal(1), // Used for hard resets and new players
 	offlineLimit: 1,  // In hours
 }
 
@@ -38,10 +38,9 @@ function canGenPoints(){
 
 // Calculate points/sec!
 function getPointGen() {
-	if(!canGenPoints())
-		return new Decimal(0)
-
+	if (!canGenPoints()) return new Decimal(0)
 	let gain = new Decimal(1)
+	if (player.multi.points.gte(1)) gain = gain.times(tmp.multi.effect)
 	return gain
 }
 
@@ -55,7 +54,7 @@ var displayThings = [
 
 // Determines when the game "ends"
 function isEndgame() {
-	return player.points.gte(new Decimal("e280000000"))
+	return player.points.gte(new Decimal("Fe100"))
 }
 
 
