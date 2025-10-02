@@ -13,9 +13,14 @@ addLayer("multi", {
     baseAmount() {return player.points}, // Get the current amount of baseResource
     type: "normal", // normal: cost to gain currency depends on amount gained. static: cost depends on how much you already have
     exponent: Decimal.reciprocate("10^^1e300"), // Prestige currency exponent
+    gainMult(){
+        let gain = new Decimal(1)
+        gain = gain.mult(tmp.rebirth.effect)
+        return gain
+    },
     effect() {
         let eff = new Decimal(1)
-        eff = player.multi.points.times(2).max(1)
+        eff = player.multi.points.mult(2).max(1)
         return eff
     },
     effectDescription() {
@@ -40,9 +45,13 @@ addLayer("rebirth", {
     baseAmount() {return player.multi.points}, // Get the current amount of baseResource
     type: "normal", // normal: cost to gain currency depends on amount gained. static: cost depends on how much you already have
     exponent: Decimal.reciprocate("10^^1e300"), // Prestige currency exponent
+    gainMult(){
+        let gain = new Decimal(1)
+        gain = gain.mult(tmp.urebirth.effect)
+    },
     effect() {
         let eff = new Decimal(1)
-        eff = player.rebirth.points.times(2).max(1)
+        eff = player.rebirth.points.mult(2).max(1)
         return eff
     },
     effectDescription() {
@@ -69,7 +78,7 @@ addLayer("urebirth", {
     exponent: Decimal.reciprocate("10^^1e300"), // Prestige currency exponent
     effect() {
         let eff = new Decimal(1)
-        eff = player.urebirth.points.times(2).max(1)
+        eff = player.urebirth.points.mult(2).max(1)
         return eff
     },
     effectDescription() {
