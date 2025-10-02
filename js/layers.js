@@ -109,6 +109,11 @@ addLayer("prestige", {
     baseAmount() {return player.urebirth.points}, // Get the current amount of baseResource
     type: "normal", // normal: cost to gain currency depends on amount gained. static: cost depends on how much you already have
     exponent: Decimal.reciprocate("10^^1e300"), // Prestige currency exponent
+    gainMult(){
+        let gain = new Decimal(1)
+        gain = gain.mul(tmp.uprestige.effect)
+        return gain
+    },
     effect() {
         let eff = new Decimal(1)
         eff = player.prestige.points.mul(2).max(1)
