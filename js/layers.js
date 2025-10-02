@@ -15,12 +15,12 @@ addLayer("multi", {
     exponent: Decimal.reciprocate("10^^1e300"), // Prestige currency exponent
     gainMult(){
         let gain = new Decimal(1)
-        gain = gain.mult(tmp.rebirth.effect)
+        gain = gain.mul(tmp.rebirth.effect)
         return gain
     },
     effect() {
         let eff = new Decimal(1)
-        eff = player.multi.points.mult(2).max(1)
+        eff = player.multi.points.mul(2).max(1)
         return eff
     },
     effectDescription() {
@@ -47,11 +47,11 @@ addLayer("rebirth", {
     exponent: Decimal.reciprocate("10^^1e300"), // Prestige currency exponent
     gainMult(){
         let gain = new Decimal(1)
-        gain = gain.mult(tmp.urebirth.effect)
+        gain = gain.mul(tmp.urebirth.effect)
     },
     effect() {
         let eff = new Decimal(1)
-        eff = player.rebirth.points.mult(2).max(1)
+        eff = player.rebirth.points.mul(2).max(1)
         return eff
     },
     effectDescription() {
@@ -78,7 +78,7 @@ addLayer("urebirth", {
     exponent: Decimal.reciprocate("10^^1e300"), // Prestige currency exponent
     effect() {
         let eff = new Decimal(1)
-        eff = player.urebirth.points.mult(2).max(1)
+        eff = player.urebirth.points.mul(2).max(1)
         return eff
     },
     effectDescription() {
