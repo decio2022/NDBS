@@ -48,6 +48,7 @@ addLayer("rebirth", {
     gainMult(){
         let gain = new Decimal(1)
         gain = gain.mul(tmp.urebirth.effect)
+        return gain
     },
     effect() {
         let eff = new Decimal(1)
