@@ -75,6 +75,6 @@ addLayer("urebirth", {
     effectDescription() {
         return " which boost Rebirth by x" + tmp.urebirth.effect
     },
-    row: 1, // Row the layer is in on the tree (0 is the first row)
+    row: 2, // Row the layer is in on the tree (0 is the first row)
     layerShown(){return true},
 })
