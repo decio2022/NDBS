@@ -37,7 +37,7 @@ addLayer("rebirth", {
     requires: new Decimal(25), // Can be a function that takes requirement increases into account
     resource: "Rebirth", // Name of prestige currency
     baseResource: "Multiplier", // Name of resource prestige is based on
-    baseAmount() {return player.multi}, // Get the current amount of baseResource
+    baseAmount() {return player.multi.points}, // Get the current amount of baseResource
     type: "normal", // normal: cost to gain currency depends on amount gained. static: cost depends on how much you already have
     exponent: Decimal.reciprocate("10^^1e300"), // Prestige currency exponent
     effect() {
@@ -64,7 +64,7 @@ addLayer("urebirth", {
     requires: new Decimal(25), // Can be a function that takes requirement increases into account
     resource: "Ultra Rebirth", // Name of prestige currency
     baseResource: "Rebirth", // Name of resource prestige is based on
-    baseAmount() {return player.rebirth}, // Get the current amount of baseResource
+    baseAmount() {return player.rebirth.points}, // Get the current amount of baseResource
     type: "normal", // normal: cost to gain currency depends on amount gained. static: cost depends on how much you already have
     exponent: Decimal.reciprocate("10^^1e300"), // Prestige currency exponent
     effect() {
