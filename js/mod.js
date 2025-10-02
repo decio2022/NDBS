@@ -1,7 +1,7 @@
 let modInfo = {
-	name: "The ??? Tree",
-	author: "nobody",
-	pointsName: "points",
+	name: "New Difficulty Button Simulator Remake",
+	author: "decio2022",
+	pointsName: "money",
 	modFiles: ["layers.js", "tree.js"],
 
 	discordName: "",
