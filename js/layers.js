@@ -20,7 +20,7 @@ addLayer("multi", {
     },
     effect() {
         let eff = new Decimal(1)
-        eff = player.multi.points.mul(2).max(1)
+        eff = player.multi.points.max(1)
         return eff
     },
     effectDescription() {
