@@ -16,7 +16,6 @@ addLayer("multi", {
     gainMult(){
         let gain = new Decimal(1)
         gain = gain.mul(tmp.rebirth.effect)
-        gain = gain.mul(tmp.megamulti.effect)
         return gain
     },
     effect() {
@@ -49,6 +48,7 @@ addLayer("rebirth", {
     gainMult(){
         let gain = new Decimal(1)
         gain = gain.mul(tmp.urebirth.effect)
+        gain = gain.mul(tmp.megamulti.effect)
         return gain
     },
     effect() {
