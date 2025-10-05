@@ -48,7 +48,7 @@ addLayer("rebirth", {
     exponent: Decimal.reciprocate("10^^1e300"), // Prestige currency exponent
     gainMult(){
         let min = new Decimal("1e4")
-        let gain = player.multi.points.div(25).floor().max(1).min(min)
+        let gain = player.multi.points.div(25).floor().min(min).max(1)
         gain = gain.mul(tmp.urebirth.effect)
         gain = gain.mul(tmp.megamulti.effect)
         return gain
