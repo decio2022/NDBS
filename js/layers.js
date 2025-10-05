@@ -70,7 +70,7 @@ addLayer("urebirth", {
     symbol: "UR", // This appears on the layer's node. Default is the id with the first letter capitalized
     position: 0, // Horizontal position within a row. By default it uses the layer id and sorts in alphabetical order
     startData() { return {
-        unlocked: true,
+        unlocked: false,
 		points: new Decimal(0),
     }},
     color: "#4BDC13",
@@ -94,7 +94,7 @@ addLayer("urebirth", {
         return " which boost Rebirth by x" + tmp.urebirth.effect
     },
     row: 2, // Row the layer is in on the tree (0 is the first row)
-    layerShown(){return true},
+    layerShown(){return player.rebirth.unlocked},
 })
 
 addLayer("prestige", {
@@ -102,7 +102,7 @@ addLayer("prestige", {
     symbol: "P", // This appears on the layer's node. Default is the id with the first letter capitalized
     position: 0, // Horizontal position within a row. By default it uses the layer id and sorts in alphabetical order
     startData() { return {
-        unlocked: true,
+        unlocked: false,
 		points: new Decimal(0),
     }},
     color: "#4BDC13",
@@ -126,7 +126,7 @@ addLayer("prestige", {
         return " which boost Ultra Rebirth by x" + tmp.prestige.effect + " and add +" + tmp.prestige.effect + " to money gain"
     },
     row: 3, // Row the layer is in on the tree (0 is the first row)
-    layerShown(){return true},
+    layerShown(){return player.urebirth.unlocked},
 })
 
 addLayer("uprestige", {
@@ -134,7 +134,7 @@ addLayer("uprestige", {
     symbol: "UP", // This appears on the layer's node. Default is the id with the first letter capitalized
     position: 0, // Horizontal position within a row. By default it uses the layer id and sorts in alphabetical order
     startData() { return {
-        unlocked: true,
+        unlocked: false,
 		points: new Decimal(0),
     }},
     color: "#4BDC13",
@@ -158,7 +158,7 @@ addLayer("uprestige", {
         return " which boost Prestige by x" + tmp.uprestige.effect + " and add +" + tmp.uprestige.effect + " to money gain"
     },
     row: 4, // Row the layer is in on the tree (0 is the first row)
-    layerShown(){return true},
+    layerShown(){return player.prestige.unlocked},
 })
 
 addLayer("megamulti", {
@@ -166,7 +166,7 @@ addLayer("megamulti", {
     symbol: "MM", // This appears on the layer's node. Default is the id with the first letter capitalized
     position: 0, // Horizontal position within a row. By default it uses the layer id and sorts in alphabetical order
     startData() { return {
-        unlocked: true,
+        unlocked: false,
 		points: new Decimal(0),
     }},
     color: "#4BDC13",
@@ -185,5 +185,5 @@ addLayer("megamulti", {
         return " which boost Ultra Prestige and Rebirth by x" + tmp.megamulti.effect
     },
     row: 5, // Row the layer is in on the tree (0 is the first row)
-    layerShown(){return true},
+    layerShown(){return player.uprestige.unlocked},
 })
