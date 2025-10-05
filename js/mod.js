@@ -40,8 +40,8 @@ function canGenPoints(){
 function getPointGen() {
 	if (!canGenPoints()) return new Decimal(0)
 	let gain = new Decimal(1)
-	gain = gain.add(tmp.prestige2.effect)
-	gain = gain.add(tmp.uprestige2.effect)
+	gain = gain.add(tmp.prestige.effect2)
+	gain = gain.add(tmp.uprestige.effect2)
 
 	// Multipliers
 	if (player.multi.points.gte(1)) gain = gain.times(tmp.multi.effect)
