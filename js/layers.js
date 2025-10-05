@@ -14,7 +14,8 @@ addLayer("multi", {
     type: "normal", // normal: cost to gain currency depends on amount gained. static: cost depends on how much you already have
     exponent: Decimal.reciprocate("10^^1e300"), // Prestige currency exponent
     gainMult(){
-        let gain = new Decimal(1)
+        let min = new Decimal("1e3")
+        let gain = player.points.div(25).floor().max(1).min(min)
         gain = gain.mul(tmp.rebirth.effect)
         return gain
     },
@@ -35,7 +36,7 @@ addLayer("rebirth", {
     symbol: "R", // This appears on the layer's node. Default is the id with the first letter capitalized
     position: 0, // Horizontal position within a row. By default it uses the layer id and sorts in alphabetical order
     startData() { return {
-        unlocked: true,
+        unlocked: false,
 		points: new Decimal(0),
     }},
     color: "#4BDC13",
@@ -46,7 +47,8 @@ addLayer("rebirth", {
     type: "normal", // normal: cost to gain currency depends on amount gained. static: cost depends on how much you already have
     exponent: Decimal.reciprocate("10^^1e300"), // Prestige currency exponent
     gainMult(){
-        let gain = new Decimal(1)
+        let min = new Decimal("1e4")
+        let gain = player.multi.points.div(25).floor().max(1).min(min)
         gain = gain.mul(tmp.urebirth.effect)
         gain = gain.mul(tmp.megamulti.effect)
         return gain
