@@ -40,7 +40,7 @@ addLayer("rebirth", {
 		points: new Decimal(0),
     }},
     color: "#4BDC13",
-    requires: new Decimal(25), // Can be a function that takes requirement increases into account
+    requires: new Decimal("25000"), // Can be a function that takes requirement increases into account
     resource: "Rebirth", // Name of prestige currency
     baseResource: "Multiplier", // Name of resource prestige is based on
     baseAmount() {return player.multi.points}, // Get the current amount of baseResource
@@ -48,7 +48,7 @@ addLayer("rebirth", {
     exponent: Decimal.reciprocate("10^^1e300"), // Prestige currency exponent
     gainMult(){
         let min = new Decimal("1e4")
-        let gain = player.multi.points.div(25).floor().min(min).max(1)
+        let gain = player.multi.points.div("25000").floor().min(min).max(1)
         gain = gain.mul(tmp.urebirth.effect)
         gain = gain.mul(tmp.megamulti.effect)
         return gain
@@ -74,14 +74,15 @@ addLayer("urebirth", {
 		points: new Decimal(0),
     }},
     color: "#4BDC13",
-    requires: new Decimal(25), // Can be a function that takes requirement increases into account
+    requires: new Decimal("50"), // Can be a function that takes requirement increases into account
     resource: "Ultra Rebirth", // Name of prestige currency
     baseResource: "Rebirth", // Name of resource prestige is based on
     baseAmount() {return player.rebirth.points}, // Get the current amount of baseResource
     type: "normal", // normal: cost to gain currency depends on amount gained. static: cost depends on how much you already have
     exponent: Decimal.reciprocate("10^^1e300"), // Prestige currency exponent
     gainMult(){
-        let gain = new Decimal(1)
+        let min = new Decimal("1e14")
+        let gain = player.rebirth.points.div(50).floor().min(min).max(1)
         gain = gain.mul(tmp.prestige.effect)
         return gain
     },
@@ -106,14 +107,15 @@ addLayer("prestige", {
 		points: new Decimal(0),
     }},
     color: "#4BDC13",
-    requires: new Decimal(25), // Can be a function that takes requirement increases into account
+    requires: new Decimal(75), // Can be a function that takes requirement increases into account
     resource: "Prestige", // Name of prestige currency
     baseResource: "Ultra Rebirth", // Name of resource prestige is based on
     baseAmount() {return player.urebirth.points}, // Get the current amount of baseResource
     type: "normal", // normal: cost to gain currency depends on amount gained. static: cost depends on how much you already have
     exponent: Decimal.reciprocate("10^^1e300"), // Prestige currency exponent
     gainMult(){
-        let gain = new Decimal(1)
+        let min = new Decimal("1e13")
+        let gain = player.urebirth.points.div(75).floor().min(min).max(1)
         gain = gain.mul(tmp.uprestige.effect)
         return gain
     },
@@ -122,8 +124,12 @@ addLayer("prestige", {
         eff = player.prestige.points.mul(2).max(1)
         return eff
     },
+    effect2(){
+        let eff = new Decimal(1)
+        eff = player.prestige.points.mul(2).max(0)
+    },
     effectDescription() {
-        return " which boost Ultra Rebirth by x" + tmp.prestige.effect + " and add +" + tmp.prestige.effect + " to money gain"
+        return " which boost Ultra Rebirth by x" + tmp.prestige.effect + " and add +" + tmp.prestige.effect2 + " to money gain"
     },
     row: 3, // Row the layer is in on the tree (0 is the first row)
     layerShown(){return player.urebirth.unlocked},
@@ -138,14 +144,15 @@ addLayer("uprestige", {
 		points: new Decimal(0),
     }},
     color: "#4BDC13",
-    requires: new Decimal(25), // Can be a function that takes requirement increases into account
+    requires: new Decimal(100), // Can be a function that takes requirement increases into account
     resource: "Ultra Prestige", // Name of prestige currency
     baseResource: "Prestige", // Name of resource prestige is based on
     baseAmount() {return player.prestige.points}, // Get the current amount of baseResource
     type: "normal", // normal: cost to gain currency depends on amount gained. static: cost depends on how much you already have
     exponent: Decimal.reciprocate("10^^1e300"), // Prestige currency exponent
     gainMult(){
-        let gain = new Decimal(1)
+        let min = new Decimal("2.5e8")
+        let gain = player.prestige.points.div(100).floor().min(min).max(1)
         gain = gain.mul(tmp.megamulti.effect)
         return gain
     },
@@ -154,8 +161,12 @@ addLayer("uprestige", {
         eff = player.uprestige.points.mul(2).max(1)
         return eff
     },
+    effect2(){
+        let eff = new Decimal(1)
+        eff = player.uprestige.points.mul(2).max(0)
+    },
     effectDescription() {
-        return " which boost Prestige by x" + tmp.uprestige.effect + " and add +" + tmp.uprestige.effect + " to money gain"
+        return " which boost Prestige by x" + tmp.uprestige.effect + " and add +" + tmp.uprestige.effect2 + " to money gain"
     },
     row: 4, // Row the layer is in on the tree (0 is the first row)
     layerShown(){return player.prestige.unlocked},
