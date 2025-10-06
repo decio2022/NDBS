@@ -18,7 +18,7 @@ let VERSION = {
 
 let changelog = `<br><br>
 	<h3>v1.0(Pre-MegaDeath)</h3><br>
-		- Added 7 Stats(Multi, Rebirth, Ultra Reb, Prestige, Ultra Pres, Mega Multi).<br>
+		- Added 7 Stats(Multi, Rebirth, Ultra Reb, Prestige, Ultra Pres, Mega Multi and Ascension).<br>
 		- Added their requirements and tons of boosts.`
 
 let winText = `Congratulations! You have reached the end and beaten this game, but for now...`
