@@ -14,7 +14,7 @@ addLayer("multi", {
     type: "normal", // normal: cost to gain currency depends on amount gained. static: cost depends on how much you already have
     exponent: Decimal.reciprocate("10^^1e300"), // Prestige currency exponent
     gainMult(){
-        let min = new Decimal("1e24")
+        let min = new Decimal("6.5e28")
         let gain = player.points.div(25).floor().max(1).min(min)
         gain = gain.mul(tmp.rebirth.effect)
         return gain
@@ -47,7 +47,7 @@ addLayer("rebirth", {
     type: "normal", // normal: cost to gain currency depends on amount gained. static: cost depends on how much you already have
     exponent: Decimal.reciprocate("10^^1e300"), // Prestige currency exponent
     gainMult(){
-        let min = new Decimal("6.66e8")
+        let min = new Decimal("1e11")
         let gain = player.multi.points.div("25000").floor().min(min).max(1)
         gain = gain.mul(tmp.urebirth.effect)
         gain = gain.mul(tmp.megamulti.effect)
