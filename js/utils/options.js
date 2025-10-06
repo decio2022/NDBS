@@ -13,9 +13,13 @@ function getStartOptions() {
 		showStory: true,
 		forceOneTab: false,
 		oldStyle: false,
-		forceTooltips: true,
-		hideMilestonePopups: false,
+		tooltipForcing: true,
 	}
+}
+let notations = ['Scientific','Standard']
+
+function changeNotation() {
+	player.notation = notations[(notations.indexOf(player.notation) + 1) % notations.length]
 }
 
 function toggleOpt(name) {
@@ -27,6 +31,7 @@ function toggleOpt(name) {
 		changeTreeQuality();
 	if (name == "oldStyle")
 		updateStyle();
+	if (name == "autosave") player.autosave = options.autosave
 }
 var styleCooldown = 0;
 function updateStyle() {
@@ -77,5 +82,3 @@ function milestoneShown(layer, id) {
 	}
 	return false;
 }
-
-let formatOption = (opt) => opt ? 'ON' : 'OFF'
