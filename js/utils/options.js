@@ -16,11 +16,6 @@ function getStartOptions() {
 		tooltipForcing: true,
 	}
 }
-let notations = ['Scientific','Standard']
-
-function changeNotation() {
-	player.notation = notations[(notations.indexOf(player.notation) + 1) % notations.length]
-}
 
 function toggleOpt(name) {
 	if (name == "oldStyle" && styleCooldown > 0)
