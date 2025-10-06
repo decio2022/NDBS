@@ -127,6 +127,7 @@ addLayer("prestige", {
     effect2(){
         let eff = new Decimal(1)
         eff = player.prestige.points.mul(2).max(0)
+        return eff
     },
     effectDescription() {
         return " which boost Ultra Rebirth by x" + tmp.prestige.effect + " and add +" + tmp.prestige.effect2 + " to money gain"
@@ -164,6 +165,7 @@ addLayer("uprestige", {
     effect2(){
         let eff = new Decimal(1)
         eff = player.uprestige.points.mul(2).max(0)
+        return eff
     },
     effectDescription() {
         return " which boost Prestige by x" + tmp.uprestige.effect + " and add +" + tmp.uprestige.effect2 + " to money gain"
