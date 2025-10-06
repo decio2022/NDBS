@@ -238,6 +238,6 @@ addLayer("asc", {
     effectDescription() {
         return " which boost Mega Multiplier, Prestige, Ultra Rebirth and Rebirth by x" + tmp.asc.effect
     },
-    row: 5, // Row the layer is in on the tree (0 is the first row)
-    layerShown(){return player.uprestige.unlocked},
+    row: 6, // Row the layer is in on the tree (0 is the first row)
+    layerShown(){return player.megamulti.unlocked},
 })
