@@ -232,7 +232,7 @@ addLayer("asc", {
     },
     effect() {
         let eff = new Decimal(1)
-        eff = player.megamulti.points.mul(2).max(1)
+        eff = player.asc.points.mul(2).max(1)
         return eff
     },
     effectDescription() {
