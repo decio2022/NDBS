@@ -12,14 +12,14 @@ let modInfo = {
 
 // Set your version in num and name
 let VERSION = {
-	num: "0.0",
-	name: "Literally nothing",
+	num: "1.0",
+	name: "Pre-MegaDeath",
 }
 
-let changelog = `<h1>Changelog:</h1><br>
-	<h3>v0.0</h3><br>
-		- Added things.<br>
-		- Added stuff.`
+let changelog = `<br><br>
+	<h3>v1.0(Pre-MegaDeath)</h3><br>
+		- Added 7 Stats(Multi, Rebirth, Ultra Reb, Prestige, Ultra Pres, Mega Multi).<br>
+		- Added their requirements and tons of boosts.`
 
 let winText = `Congratulations! You have reached the end and beaten this game, but for now...`
 
@@ -58,7 +58,7 @@ var displayThings = [
 
 // Determines when the game "ends"
 function isEndgame() {
-	return player.points.gte(new Decimal("Fe100"))
+	return player.points.gte(new Decimal("1.8e308"))
 }
 
 
