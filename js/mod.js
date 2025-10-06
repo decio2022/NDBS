@@ -12,11 +12,13 @@ let modInfo = {
 
 // Set your version in num and name
 let VERSION = {
-	num: "1.0",
-	name: "Pre-MegaDeath",
+	num: "1.9",
+	name: "MegaDeath",
 }
 
-let changelog = `<br><br>
+let changelog = `<br><br><h3>v1.9(MegaDeath)</h3><br>
+		- Added Power.
+	<br><br>
 	<h3>v1.0(Pre-MegaDeath)</h3><br>
 		- Added 7 Stats(Multi, Rebirth, Ultra Reb, Prestige, Ultra Pres, Mega Multi and Ascension).<br>
 		- Added their requirements and tons of boosts.`
@@ -42,6 +44,7 @@ function getPointGen() {
 	let gain = new Decimal(1)
 	gain = gain.add(tmp.prestige.effect2)
 	gain = gain.add(tmp.uprestige.effect2)
+	gain = gain.add(tmp.power.effect2)
 
 	// Multipliers
 	if (player.multi.points.gte(1)) gain = gain.times(tmp.multi.effect)
@@ -58,7 +61,7 @@ var displayThings = [
 
 // Determines when the game "ends"
 function isEndgame() {
-	return player.points.gte(new Decimal("1.8e308"))
+	return player.points.gte(new Decimal("1e3003"))
 }
 
 

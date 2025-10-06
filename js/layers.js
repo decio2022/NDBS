@@ -14,7 +14,7 @@ addLayer("multi", {
     type: "normal", // normal: cost to gain currency depends on amount gained. static: cost depends on how much you already have
     exponent: Decimal.reciprocate("10^^1e300"), // Prestige currency exponent
     gainMult(){
-        let min = new Decimal("6.5e28")
+        let min = new Decimal("1e33")
         let gain = player.points.div(25).floor().max(1).min(min)
         gain = gain.mul(tmp.rebirth.effect)
         return gain
@@ -47,11 +47,12 @@ addLayer("rebirth", {
     type: "normal", // normal: cost to gain currency depends on amount gained. static: cost depends on how much you already have
     exponent: Decimal.reciprocate("10^^1e300"), // Prestige currency exponent
     gainMult(){
-        let min = new Decimal("1e11")
+        let min = new Decimal("1.25e16")
         let gain = player.multi.points.div("25000").floor().min(min).max(1)
         gain = gain.mul(tmp.urebirth.effect)
         gain = gain.mul(tmp.megamulti.effect)
         gain = gain.mul(tmp.asc.effect)
+        gain = gain.mul(tmp.power.effect)
         return gain
     },
     effect() {
@@ -82,10 +83,11 @@ addLayer("urebirth", {
     type: "normal", // normal: cost to gain currency depends on amount gained. static: cost depends on how much you already have
     exponent: Decimal.reciprocate("10^^1e300"), // Prestige currency exponent
     gainMult(){
-        let min = new Decimal("2.5e5")
+        let min = new Decimal("1e5")
         let gain = player.rebirth.points.div(50).floor().min(min).max(1)
         gain = gain.mul(tmp.prestige.effect)
         gain = gain.mul(tmp.asc.effect)
+        gain = gain.mul(tmp.power.effect)
         return gain
     },
     effect() {
@@ -120,6 +122,7 @@ addLayer("prestige", {
         let gain = player.urebirth.points.div(75).floor().min(min).max(1)
         gain = gain.mul(tmp.uprestige.effect)
         gain = gain.mul(tmp.asc.effect)
+        gain = gain.mul(tmp.power.effect)
         return gain
     },
     effect() {
@@ -158,6 +161,7 @@ addLayer("uprestige", {
         let min = new Decimal("100")
         let gain = player.prestige.points.div(100).floor().min(min).max(1)
         gain = gain.mul(tmp.megamulti.effect)
+        gain = gain.mul(tmp.power.effect)
         return gain
     },
     effect() {
@@ -226,8 +230,9 @@ addLayer("asc", {
     type: "normal", // normal: cost to gain currency depends on amount gained. static: cost depends on how much you already have
     exponent: Decimal.reciprocate("10^^1e300"), // Prestige currency exponent
     gainMult(){
-        let min = new Decimal("5")
+        let min = new Decimal("25")
         let gain = player.megamulti.points.div(25).floor().min(min).max(1)
+        gain = gain.mul(tmp.power.effect)
         return gain
     },
     effect() {
@@ -240,4 +245,41 @@ addLayer("asc", {
     },
     row: 6, // Row the layer is in on the tree (0 is the first row)
     layerShown(){return player.megamulti.unlocked},
+})
+
+addLayer("power", {
+    name: "Power", // This is optional, only used in a few places, If absent it just uses the layer id.
+    symbol: "POW", // This appears on the layer's node. Default is the id with the first letter capitalized
+    position: 0, // Horizontal position within a row. By default it uses the layer id and sorts in alphabetical order
+    startData() { return {
+        unlocked: false,
+		points: new Decimal(0),
+    }},
+    color: "#4BDC13",
+    requires: new Decimal(1000), // Can be a function that takes requirement increases into account
+    resource: "Power", // Name of prestige currency
+    baseResource: "Ascensions", // Name of resource prestige is based on
+    baseAmount() {return player.asc.points}, // Get the current amount of baseResource
+    type: "normal", // normal: cost to gain currency depends on amount gained. static: cost depends on how much you already have
+    exponent: Decimal.reciprocate("10^^1e300"), // Prestige currency exponent
+    gainMult(){
+        let min = new Decimal("3")
+        let gain = player.asc.points.div(1000).floor().min(min).max(1)
+        return gain
+    },
+    effect() {
+        let eff = new Decimal(1)
+        eff = player.power.points.mul(2).max(1)
+        return eff
+    },
+    effect2(){
+        let eff = new Decimal(1)
+        eff = player.power.points.mul(2).max(0)
+        return eff
+    },
+    effectDescription() {
+        return " which boost Ascension, Ultra Prestige, Prestige, Ultra Rebirth and Rebirth by x" + tmp.asc.effect + " and add +" + tmp.power.effect2 + " to money gain"
+    },
+    row: 7, // Row the layer is in on the tree (0 is the first row)
+    layerShown(){return player.asc.unlocked},
 })
